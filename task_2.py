@@ -48,5 +48,6 @@ def safe_user_find_by_name(username):
     #     print "Not valid username"
 
 
+print 'dangerous:', exploitable_user_find_by_name("iki")
 print 'dangerous:', exploitable_user_find_by_name("iki' or  user_id='1' or username='%123")
 print "safe:", safe_user_find_by_name("iki' or  user_id='1' or username='%123")
