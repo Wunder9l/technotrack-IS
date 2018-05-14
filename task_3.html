@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input id="commentInputField" name="commentAddText">
+<button id="addComment">Add comment</button>
+
+<div id="comments">
+    <div>First comment</div>
+</div>
+
+</body>
+<footer>
+    <script>
+        function safeAddComment(value) {
+            var comments = document.getElementById('comments');
+            var newComment = document.createElement('div');
+            newComment.textContent = value;
+            comments.appendChild(newComment);
+        }
+        function exploitableAddComment(value) {
+            var comments = document.getElementById('comments');
+            comments.innerHTML += "<div>" + value + "</div>";
+        }
+
+        //дожидаемся полной загрузки страницы
+        window.onload = function () {
+
+            //получаем идентификатор элемента
+            var button = document.getElementById('addComment');
+
+            //вешаем на него событие
+            button.onclick = function () {
+                const value = document.getElementById("commentInputField").value;
+                if (value) {
+                     safeAddComment(value);
+//                    <a href="#" onclick="alert('Пример 1 сработал'); return false;">Пример 1</a>
+//                    exploitableAddComment(value);
+                }
+
+                //предотвращаем переход по ссылке href
+                return false;
+            }
+        }
+    </script>
+</footer>
+</html>

